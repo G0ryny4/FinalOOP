@@ -46,5 +46,25 @@ System.out.println("INPUT/OUTPUT HUMAN:");
         FamilyTree restoFamilyTree = (FamilyTree) restore;
         System.out.println(restoFamilyTree.getHumans());
         System.out.println();
+
+        System.out.println("Вывод списка Humanов циклом forech:");
+        for (Human human : tree) {
+            System.out.println(human);
+        }
+        System.out.println();
+
+        System.out.println("Вывод отсортированных по имени Humanов:");
+        tree.sortByName();
+        for (Human human : tree) {
+            System.out.println(human);
+        }
+        System.out.println();
+
+        System.out.println("Вывод отсортированных по дате рождения Humanов:");
+        tree.sortByDate();
+        for (Human human : tree) {
+            System.out.println(human);
+        }
+        System.out.println();
     }
 }

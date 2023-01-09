@@ -2,8 +2,7 @@ import java.io.Serializable;
 import java.time.Year;
 import java.util.*;
 
-
-public class Human implements Serializable {
+public class Human implements Serializable, Comparable<Human> {
     private String name;
     private int date;
     private String sex;
@@ -18,9 +17,10 @@ public class Human implements Serializable {
         this.mother = null;
         this.children = new ArrayList<>();
     }
+
     public Human(String name) {
         this.name = name;
-        this.date = getDate();
+        this.date = generateNowDate();
         this.sex = getRandomSex();
         this.father = null;
         this.mother = null;
@@ -29,6 +29,11 @@ public class Human implements Serializable {
     public String getName() {
         return this.name;
     }
+
+    public int getDate() {
+        return this.date;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -60,7 +65,9 @@ public class Human implements Serializable {
                     this.name, this.date, this.sex, this.father.getName(), this.mother.getName(),
                     this.children.toString().replaceAll("\\[\\]", ""));
     }
-    private int getDate() {
+
+    
+    private int generateNowDate() {
         int date = Year.now().getValue();
         return date;
     }
@@ -71,5 +78,10 @@ public class Human implements Serializable {
             return "female";
         else
             return "male";
+    }
+
+    @Override
+    public int compareTo(Human o) {
+        return name.compareTo(((Human) o).getName());
     }
 }
