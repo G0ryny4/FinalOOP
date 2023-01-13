@@ -4,15 +4,18 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-public class FamilyTree implements Serializable, IAddable, Iterable<Human> {
+public class FamilyTree implements Serializable, IFamilyTree, Iterable<Human> {
     private List<Human> humans;
 
     public FamilyTree() {
         this.humans = new ArrayList();
     }
+
+    @Override
     public List<Human> getHumans() {
         return this.humans;
     }
+
     @Override
     public void addHuman(Human human, Human father, Human mother) {
         if (father != null) {
@@ -25,6 +28,7 @@ public class FamilyTree implements Serializable, IAddable, Iterable<Human> {
         }
         humans.add(human);
     }
+
     public Human findByName(String name) {
         for (Human human : humans) {
             if (human.getName() == name)
@@ -32,13 +36,13 @@ public class FamilyTree implements Serializable, IAddable, Iterable<Human> {
         }
         return null;
     }
+
     public List<Human> findAllByName(String name) {
         List<Human> humansList = new ArrayList();
         for (Human human : humans) {
             if (human.getName() == name)
                 humansList.add(human);
         }
-       
         return humansList;
     }
 
@@ -58,6 +62,6 @@ public class FamilyTree implements Serializable, IAddable, Iterable<Human> {
 
     @Override
     public Iterator<Human> iterator() {
-        return new FamilyTreeIterator((this.humans));
+        return new FamilyTreeIterator(this.humans);
     }
 }

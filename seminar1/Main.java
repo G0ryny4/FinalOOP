@@ -1,4 +1,5 @@
 import java.io.Serializable;
+
 public class Main {
     public static void main(String[] args) {
         Human father = new Human("Станислав", 1960, "male");
@@ -7,6 +8,7 @@ public class Main {
         Human humanF = new Human("Екатерина", 2000, "female");
         Human humanM2 = new Human("Вася", 1998, "male");
         Human human2 = new Human("Анна");
+
         System.out.println("Вывод humanов напрамую:");
         System.out.println(father);
         System.out.println(mother);
@@ -14,6 +16,7 @@ public class Main {
         System.out.println(humanM2);
         System.out.println(humanF);
         System.out.println(human2);
+
         FamilyTree tree = new FamilyTree();
         tree.addHuman(new Human("Владимир", 1980, "male"), father, null);
         tree.addHuman(father, null, null);
@@ -22,19 +25,22 @@ public class Main {
         tree.addHuman(human2, humanM1, humanF);
         tree.addHuman(new Human("Анастасия"), null, human2);
         System.out.println();
+
         System.out.println("Вывод humanов через FamilyTree:");
         System.out.println(tree.findByName("Анна"));
         System.out.println();
+
         System.out.println("Вывод humanов через FamilyTree с одним именем:");
         System.out.println(tree.findAllByName("Вася"));
         System.out.println();
+
         System.out.println("Вывод humanов через FamilyTree с помощью метода showAllToConsole");
         tree.showAllInConsole();
         System.out.println();
 
         InputOutputBin inputOutputBin = new InputOutputBin();
 
-System.out.println("INPUT/OUTPUT HUMAN:");
+        System.out.println("INPUT/OUTPUT HUMAN:");
         inputOutputBin = new InputOutputBin();
         inputOutputBin.saveAs(humanF, "human.bin");
         System.out.println(inputOutputBin.readFrom("human.bin"));

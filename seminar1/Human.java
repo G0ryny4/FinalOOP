@@ -9,6 +9,7 @@ public class Human implements Serializable, Comparable<Human> {
     private Human father;
     private Human mother;
     private List<Human> children;
+
     public Human(String name, int date, String sex) {
         this.name = name;
         this.date = date;
@@ -26,6 +27,7 @@ public class Human implements Serializable, Comparable<Human> {
         this.mother = null;
         this.children = new ArrayList<>();
     }
+
     public String getName() {
         return this.name;
     }
@@ -37,15 +39,19 @@ public class Human implements Serializable, Comparable<Human> {
     public void setName(String name) {
         this.name = name;
     }
+
     public void setFather(Human father) {
         this.father = father;
     }
+
     public void setMother(Human mother) {
         this.mother = mother;
     }
+
     public List<Human> getChildren() {
         return this.children;
     }
+
     @Override
     public String toString() {
         if (this.father == null && this.mother == null && this.children == null)
@@ -66,11 +72,11 @@ public class Human implements Serializable, Comparable<Human> {
                     this.children.toString().replaceAll("\\[\\]", ""));
     }
 
-    
     private int generateNowDate() {
         int date = Year.now().getValue();
         return date;
     }
+
     private String getRandomSex() {
         Random random = new Random();
         int rnd = random.nextInt(0, 2);
