@@ -1,67 +1,75 @@
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-public class FamilyTree implements Serializable, IFamilyTree, Iterable<Human> {
-    private List<Human> humans;
+public class FamilyTree<T extends LiveBeing<T>> implements Serializable, IFamilyTree<T>, Iterable<T> {
+    private List<T> liveBeings;
 
     public FamilyTree() {
-        this.humans = new ArrayList();
+        this.liveBeings = new ArrayList<>();
     }
 
     @Override
-    public List<Human> getHumans() {
-        return this.humans;
+    public List<T> getLiveBeings() {
+        return this.liveBeings;
     }
 
     @Override
-    public void addHuman(Human human, Human father, Human mother) {
+    public void setLiveBeings(List<T> liveBeings) {
+        this.liveBeings = liveBeings;
+    }
+
+    @Override
+    public void addLiveBeing(T liveBeing, T father, T mother) {
         if (father != null) {
-            human.setFather(father);
-            father.getChildren().add(human);
+            liveBeing.setFather(father);
+            father.addChild(liveBeing);
         }
         if (mother != null) {
-            human.setMother(mother);
-            mother.getChildren().add(human);
+            liveBeing.setMother(mother);
+            mother.addChild(liveBeing);
         }
-        humans.add(human);
+        liveBeings.add(liveBeing);
     }
 
-    public Human findByName(String name) {
-        for (Human human : humans) {
-            if (human.getName() == name)
-                return human;
+    public T findByName(String name) {
+        for (T liveBeing : liveBeings) {
+            if (liveBeing.getName().equals(name))
+                return liveBeing;
         }
         return null;
     }
 
-    public List<Human> findAllByName(String name) {
-        List<Human> humansList = new ArrayList();
-        for (Human human : humans) {
-            if (human.getName() == name)
-                humansList.add(human);
+    public List<T> findAllByName(String name) {
+        List<T> liveBeings = new ArrayList<>();
+        for (T liveBeing : this.liveBeings) {
+            if (liveBeing.getName().equals(name))
+                liveBeings.add(liveBeing);
         }
-        return humansList;
+        return liveBeings;
     }
 
     public void showAllInConsole() {
-        for (Human human : humans) {
-            System.out.println(human.toString());
+        for (T liveBeing : liveBeings) {
+            System.out.println(liveBeing.toString());
         }
     }
 
-    public void sortByName() {
-        Collections.sort(this.humans);
+    public List<T> sortByName() {
+        Collections.sort(liveBeings);
+        return liveBeings;
     }
 
-    public void sortByDate() {
-        Collections.sort(this.humans, new HumanComparatorByDate());
+    public List<T> sortByDate() {
+        Collections.sort(liveBeings, new TComparatorByDate<T>());
+        return liveBeings;
     }
 
     @Override
-    public Iterator<Human> iterator() {
-        return new FamilyTreeIterator(this.humans);
+    public Iterator<T> iterator() {
+        return new FamilyTreeIterator<T>(liveBeings);
     }
 }

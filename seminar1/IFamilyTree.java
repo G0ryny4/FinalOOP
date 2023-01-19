@@ -1,7 +1,9 @@
 import java.util.List;
 
-public interface IFamilyTree {
-    List<Human> getHumans();
+public interface IFamilyTree<T extends LiveBeing<T>> {
+    List<T> getLiveBeings();
 
-    void addHuman(Human human, Human father, Human mother);
+    public void setLiveBeings(List<T> liveBeings);
+
+    void addLiveBeing(T liveBeing, T father, T mother);
 }

@@ -1,21 +1,22 @@
+
 import java.util.Iterator;
 import java.util.List;
 
-public class FamilyTreeIterator implements Iterator<Human> {
+public class FamilyTreeIterator<T extends LiveBeing<T>> implements Iterator<T> {
     private int index;
-    private List<Human> humansList;
+    private List<T> liveBeingsList;
 
-    public FamilyTreeIterator(List<Human> humansList) {
-        this.humansList = humansList;
+    public FamilyTreeIterator(List<T> aliveBeingList) {
+        this.liveBeingsList = aliveBeingList;
     }
 
     @Override
     public boolean hasNext() {
-        return index < humansList.size();
+        return index < this.liveBeingsList.size();
     }
 
     @Override
-    public Human next() {
-        return humansList.get(index++);
+    public T next() {
+        return this.liveBeingsList.get(index++);
     }
 }

@@ -1,17 +1,17 @@
 import java.util.List;
 
-public class Human extends LiveBeing<Human> {
+public class Alifant extends LiveBeing<Alifant> {
 
-    public Human(String name, int date, String sex) {
+    public Alifant(String name, int date, String sex) {
         super(name, date, sex);
     }
 
-    public Human(String name) {
+    public Alifant(String name) {
         super(name);
     }
 
     @Override
-    public List<Human> getChildren() {
+    public List<Alifant> getChildren() {
         return super.getChildren();
     }
 
@@ -21,12 +21,12 @@ public class Human extends LiveBeing<Human> {
     }
 
     @Override
-    public void setFather(Human father) {
+    public void setFather(Alifant father) {
         super.setFather(father);
     }
 
     @Override
-    public void setMother(Human mother) {
+    public void setMother(Alifant mother) {
         super.setMother(mother);
     }
 
@@ -42,11 +42,11 @@ public class Human extends LiveBeing<Human> {
 
     @Override
     public String toString() {
-        return String.format("Вид: Человек разумный\n%s", super.toString());
+        return String.format("Вид: Слон белый\n%s", super.toString());
     }
 
     @Override
-    public int compareTo(Human o) {
+    public int compareTo(Alifant o) {
         return super.compareTo(o);
     }
 }
