@@ -1,5 +1,3 @@
-import java.io.Serializable;
-
 public class Main {
     public static void main(String[] args) {
 
@@ -9,14 +7,6 @@ public class Main {
         Human humanF = new Human("Екатерина", 2000, "female");
         Human humanM2 = new Human("Вася", 1998, "male");
         Human human2 = new Human("Анна");
-
-        System.out.println("Вывод humanов напрамую:");
-        System.out.println(father);
-        System.out.println(mother);
-        System.out.println(humanM1);
-        System.out.println(humanM2);
-        System.out.println(humanF);
-        System.out.println(human2);
 
         FamilyTree<Human> humanTree = new FamilyTree<>();
         humanTree.addLiveBeing(new Human("Владимир", 1980, "male"), father, null);
@@ -38,9 +28,7 @@ public class Main {
         alifantTree.addLiveBeing(alifantSon, alifantFather, alifantMother);
         alifantTree.addLiveBeing(alifantDaughter, alifantFather, alifantMother);
 
-        
-
-        Controller<Human> controller = new Controller<>(humanTree);
+        Controller<Human> controller = new Controller<>(humanTree, "liveBeings.bin");
         controller.start();
     }
 }
